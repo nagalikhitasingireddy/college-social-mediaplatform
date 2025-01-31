@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <style>
+        body {
+            margin: 0;
+        }
+        .container {
+            background-image: url('/home/user/Desktop/cspProject/16150566.jpg'); /* Use the correct path */
+            background-repeat: no-repeat;
+            background-size: cover; 
+            background-position: center; 
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .inner-container {
+            border: 1px solid black;
+            width: 500px;
+            height: 350px;
+            border-radius: 5px;
+            padding: 20px;
+            box-shadow: 0px 0px 15px black;
+            background-color: rgba(255, 255, 255, 0.7);
+        }
+        .label {
+            text-align: left;
+            font-weight: bold;
+        }
+        .form-group {
+            margin-bottom: 10px;
+            margin-top: 5px;
+        }
+        .form-control {
+            margin-top: 5px;
+            margin-bottom: 10px;
+            width: 95%;
+            padding: 10px;
+            border: 1px solid black; /* Default black border */
+            border-radius: 5px;
+            color: black;
+        }
+        .form-control:focus {
+            outline: none;
+        }
+        .form-control.error-border {
+            border: 1px solid red; /* Red border when there's an error */
+        }
+        .checkbox {
+            margin-bottom: 10px;
+        }
+        .submit {
+            width: 100%;
+            padding: 15px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            text-align: center;
+            font-size: 20px;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .submit:hover {
+            background-color: #0056b3;
+        }
+        .error {
+            color: red;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="inner-container">
+            <div class="form-group">
+                <label for="name"><i class="fa-regular fa-user" style="color:green;"></i>Student Name:</label><br>
+                <input type="text" id="name" placeholder="Enter your name" class="form-control">
+                <span id="nameError" class="error"></span>
+            </div>
+            <div class="form-group">
+                <label for="password"><i class="fa-solid fa-lock" style="color:green;"></i>Password:</label><br>
+                <input type="password" id="password" placeholder="Enter your password" class="form-control">
+                <span id="passwordError" class="error"></span>
+            </div>
+            <input type="checkbox" id="showPassword" class="checkbox"> Show Password<br>
+            <button type="submit" class="submit" onclick="validateForm(event)">Login</button>   
+        </div>
+    </div>
+
+    <script>
+        // JavaScript to toggle password visibility
+        const checkbox = document.getElementById('showPassword');
+        const passwordInput = document.getElementById('password');
+        const nameInput = document.getElementById('name');
+        const passwordError = document.getElementById('passwordError');
+        const nameError = document.getElementById('nameError');
+
+        checkbox.addEventListener('change', () => {
+            if (checkbox.checked) {
+                passwordInput.type = 'text'; 
+            } else {
+                passwordInput.type = 'password'; 
+            }
+        });
+
+        function validateForm(event) {
+            let isValid = true;
+
+            // Reset error messages and borders
+            nameError.textContent = "";
+            passwordError.textContent = "";
+            nameInput.classList.remove("error-border");
+            passwordInput.classList.remove("error-border");
+
+            // Validate name
+            if (nameInput.value.trim() === "") {
+                nameError.textContent = "This is required.";
+                nameInput.classList.add("error-border");
+                isValid = false;
+            }
+
+            // Validate password
+            const password = passwordInput.value;
+            const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{8,}$/;
+
+            if (password === "") {
+                passwordError.textContent = "This is required.";
+                passwordInput.classList.add("error-border");
+                isValid = false;
+            } else if (!passwordPattern.test(password)) {
+                passwordError.textContent = "Password must be at least 8 characters long, contain one uppercase letter, one lowercase letter, and one special character.";
+                passwordInput.classList.add("error-border");
+                isValid = false;
+            }
+
+            if (!isValid) {
+                event.preventDefault();
+            } else {
+                alert("Form is valid!");
+            }
+        }
+    </script>
+</body>
+</html>
+
