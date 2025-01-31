@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>College Meme Section</title>
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="script.js"></script>
+</head>
+<body>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="icon" onclick="toggleSidebar()">☰</div>
+        <div class="leaderboard-content">
+            <h2>Leaderboard</h2>
+            <ul id="leaderboard">
+                <!-- Top liked memes will be inserted here dynamically -->
+            </ul>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+
+        <header>
+            <h1>College Meme Community</h1>
+            <p>Post your best memes and climb the leaderboard!</p>
+        </header>
+
+        <!-- Meme Gallery -->
+        <div class="meme-gallery" id="memeGallery">
+            <!-- Default Memes (Dynamically Loaded) -->
+        </div>
+
+        <!-- Upload Section -->
+        <div class="upload-section" id="uploadSection">
+            <h2>Upload Your Meme</h2>
+            <input type="file" id="memeImage" accept="image/*">
+            <textarea id="memeCaption" placeholder="Enter a caption..."></textarea>
+            <button onclick="uploadMeme()">Upload Meme</button>
+        </div>
+
+    </div>
+
+    <!-- Floating Upload Button -->
+    <button class="upload-btn" onclick="scrollToUpload()">Upload Meme</button>
+
+</body>
+</html>
