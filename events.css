@@ -41,11 +41,17 @@ body {
         }
 
            #createEventBtn {
+
+        }
+
+        .viewAllEvents {
+           
             background-image: url('/home/user/Desktop/Social/college-social-mediaplatform/Images/rguktNzd.jpg'); 
         }
 
         .viewAllEvents {
             background-image: url('/home/user/Desktop/Social/college-social-mediaplatform/Images/clg.jpeg'); 
+
         }
         
         #createEventBtn:hover,.viewAllEvents:hover{
