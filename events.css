@@ -3,7 +3,7 @@ body {
             text-align: center;
             margin: 0;
             padding: 20px;
-            background:linear-gradient(to bottom, #f4f4f9,blue);
+            background:linear-gradient(135deg,rgb(72, 72, 233),rgb(rgb(240, 173, 48)));
             animation: fadeIn 1s ease-in-out;
         }
         .container {
