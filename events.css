@@ -41,11 +41,17 @@ body {
         }
 
            #createEventBtn {
-            background-image: url('/home/user/Desktop/cspProject/rguktNzd.jpg'); /* Replace with your image URL */
+
         }
 
         .viewAllEvents {
-            background-image: url('/home/user/Desktop/cspProject/clg.jpeg'); /* Replace with your image URL */
+           
+            background-image: url('/home/user/Desktop/Social/college-social-mediaplatform/Images/rguktNzd.jpg'); 
+        }
+
+        .viewAllEvents {
+            background-image: url('/home/user/Desktop/Social/college-social-mediaplatform/Images/clg.jpeg'); 
+
         }
         
         #createEventBtn:hover,.viewAllEvents:hover{
