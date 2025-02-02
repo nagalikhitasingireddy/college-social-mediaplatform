@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #ff9a3c, #ff3c3c, #ffd700);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .profile-container {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 350px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .profile-img-container {
+            position: relative;
+            width: 120px;
+            height: 120px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #667eea;
+            border-radius: 50%;
+            overflow: hidden;
+        }
+
+        .profile-img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .student-icon {
+            font-size: 60px;
+            color: white;
+            position: absolute;
+        }
+
+        .upload-btn {
+            position: absolute;
+            bottom: 5px;
+            right: 5px;
+            background: rgba(0, 0, 0, 0.6);
+            color: white;
+            padding: 8px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        .profile-info {
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #333;
+            margin-top: 10px;
+        }
+
+        .details-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            margin-top: 10px;
+            width: 100%;
+        }
+
+        .input-group {
+            margin: 10px 0;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #667eea;
+            border-radius: 8px;
+            font-size: 1rem;
+            text-align: center;
+        }
+
+        .edit-btn {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 1rem;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="profile-container">
+        <div class="profile-img-container">
+            <input type="file" id="fileInput" style="display: none;" accept="image/*" onchange="previewImage(event)">
+            <img id="profileImage" class="profile-img" alt="">
+            <i class="fa-solid fa-user-graduate student-icon" id="studentIcon"></i>
+            <div class="upload-btn" onclick="document.getElementById('fileInput').click()">
+                <i class="fas fa-plus"></i>
+            </div>
+        </div>
+        <div class="profile-info" id="username">John Doe</div>
+        <div class="details-card">
+            <div class="input-group">
+                <input type="text" id="nameInput" value="John Doe" readonly>
+            </div>
+            <div class="input-group">
+                <input type="email" id="emailInput" value="john.doe@example.com" readonly>
+            </div>
+            <div class="input-group">
+                <input type="tel" id="phoneInput" value="+1234567890" readonly>
+            </div>
+            <button class="edit-btn" onclick="toggleEdit()">Edit Profile</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const savedImage = localStorage.getItem("profileImage");
+            if (savedImage) {
+                document.getElementById("profileImage").src = savedImage;
+                document.getElementById("profileImage").style.display = "block";
+                document.getElementById("studentIcon").style.display = "none";
+            }
+        });
+
+        function previewImage(event) {
+            const reader = new FileReader();
+            reader.onload = function () {
+                const imageData = reader.result;
+                document.getElementById("profileImage").src = imageData;
+                document.getElementById("profileImage").style.display = "block";
+                document.getElementById("studentIcon").style.display = "none";
+                localStorage.setItem("profileImage", imageData);
+            }
+            reader.readAsDataURL(event.target.files[0]);
+        }
+
+        function toggleEdit() {
+            let nameInput = document.getElementById("nameInput");
+            let phoneInput = document.getElementById("phoneInput");
+            let usernameDisplay = document.getElementById("username");
+            let button = document.querySelector(".edit-btn");
+
+            if (button.innerText === "Edit Profile") {
+                nameInput.removeAttribute("readonly");
+                phoneInput.removeAttribute("readonly");
+                button.innerText = "Save Changes";
+            } else {
+                if (!/^[a-zA-Z ]+$/.test(nameInput.value)) {
+                    alert("Enter a valid name!");
+                    return;
+                }
+                if (!/^\+?[0-9]{10,15}$/.test(phoneInput.value)) {
+                    alert("Enter a valid phone number!");
+                    return;
+                }
+                nameInput.setAttribute("readonly", true);
+                phoneInput.setAttribute("readonly", true);
+                usernameDisplay.innerText = nameInput.value;
+                localStorage.setItem("username", nameInput.value);
+                localStorage.setItem("phone", phoneInput.value);
+                button.innerText = "Edit Profile";
+            }
+        }
+    </script>
+</body>
+</html>
