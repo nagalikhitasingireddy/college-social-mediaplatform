@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Events</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-image:url('/home/user/Desktop/cspProject/blue.jpg');
+            background-size:cover;
+            background-repeat:no-repeat;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            color: #333;
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        /* Event List */
+        .event-list {
+            text-align: left;
+            padding: 10px;
+        }
+        .event-item {
+            background: #f8f9fa;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 10px;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .event-item:hover {
+            transform: scale(1.02);
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        .reminder-btn {
+            margin-left: 10px;
+            background: linear-gradient(to right, #00f2fe, #4facfe);
+            border: none;
+            padding: 5px 10px;
+            border-radius: 15px;
+            color: white;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        .reminder-btn:hover {
+            transform: scale(1.05);
+        }
+
+        /* Buttons */
+        button {
+            background: linear-gradient(to right, #00f2fe, #4facfe);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        button:hover {
+            transform: scale(1.05);
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>📜 All Events</h2>
+        <div id="eventList" class="event-list"></div>
+        <button onclick="window.location.href='/home/user/Desktop/cspProject/index.html'">⬅ Back to Calendar</button>
+    </div>
+    <script>
+        // Load all events
+        function loadAllEvents() {
+            let events = JSON.parse(localStorage.getItem("events")) || [];
+            let eventList = document.getElementById("eventList");
+            eventList.innerHTML = "";
+
+            if (events.length === 0) {
+                eventList.innerHTML = "<p>No events available.</p>";
+                return;
+            }
+
+            events.forEach((event, index) => {
+                let div = document.createElement("div");
+                div.classList.add("event-item");
+                div.innerHTML = `
+                    <strong>${event.name}</strong> - ${event.date}
+                    <button class="reminder-btn" onclick="toggleReminder(${index})">${event.reminder ? '✅' : '🔔'} Reminder</button>
+                `;
+                eventList.appendChild(div);
+            });
+        }
+
+        // Toggle reminder
+        function toggleReminder(index) {
+            let events = JSON.parse(localStorage.getItem("events")) || [];
+            events[index].reminder = !events[index].reminder;
+            localStorage.setItem("events", JSON.stringify(events));
+            loadAllEvents();
+        }
+
+        // Initialize
+        document.addEventListener("DOMContentLoaded", loadAllEvents);
+    </script>
+</body>
+</html>
