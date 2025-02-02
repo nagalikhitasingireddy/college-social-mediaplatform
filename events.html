@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Events Board</title>
+    <link rel="stylesheet" href="events.css">
+    <script defer src="events.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+    <div class="reminder-icon" id="reminderIcon" onclick="toggleReminderBox()">🔔</div>
+        <div class="reminder-box" id="reminderBox">
+            <h3>Reminders</h3>
+            <div id="reminderList"></div>
+        </div>
+
+        <h2>Events Board</h2>
+        <div id="countdown"></div>
+        <div class="calendar-header">
+            <button onclick="changeMonth(-1)">⬅ Prev</button>
+            <h3 id="currentMonthYear"></h3>
+            <button onclick="changeMonth(1)">Next ➡</button>
+        </div>
+        <div class="calendar" id="calendar"></div>
+        <button id="createEventBtn" onclick="toggleEventForm()">➕ Create New Event</button>
+        <button class ="viewAllEvents" onclick="window.location.href='all_events.html'">📜 View All Events</button>
+        <div class="event-form" id="eventForm">
+            <h3>📝 Add New Event</h3>
+            <input type="text" id="eventName" placeholder="Enter event name...">
+            <input type="date" id="eventDate">
+            <button onclick="addEvent()">Add Event</button>
+        </div>
+
+        <!-- Social Sharing Buttons -->
+        <div class="social-sharing">
+            <button class="whatsapp" onclick="shareOnWhatsApp()"><i class="fab fa-whatsapp"></i> Share on WhatsApp</button>
+            <button class="facebook" onclick="shareOnFacebook()"><i class="fab fa-facebook-f"></i> Share on Facebook</button>
+            
+        </div>
+    </div>
+
+        
+</body>
+</html>
