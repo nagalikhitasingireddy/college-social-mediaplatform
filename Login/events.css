@@ -1,0 +1,291 @@
+body {
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 20px;
+    background:linear-gradient(to bottom, #f4f4f9,blue);
+    animation: fadeIn 1s ease-in-out;
+}
+.container {
+    max-width: 900px;
+    margin: auto;
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+    position: relative;
+    animation: slideUp 0.8s ease-in-out;
+}
+
+
+h2 {
+    color: #003366;
+    font-size: 30px;
+    margin-bottom: 20px;
+    animation: pulse 2s infinite;
+}
+
+/* Buttons with Background Images */
+#createEventBtn, .viewAllEvents {
+    background-size: cover;
+    background-position: center;
+    color: white;
+    font-weight: bold;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 25px;
+    cursor: pointer;
+    margin: 10px;
+    font-size: 16px;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+   #createEventBtn {
+    background-image: url('../Images/rguktNzd.jpg'); /* Replace with your image URL */
+    background-size: cover;
+    background-position: center;
+}
+
+.viewAllEvents {
+    background-image: url('../Images/clg.jpeg'); /* Replace with your image URL */
+    background-size: cover;
+    background-position: center;
+}
+
+#createEventBtn:hover,.viewAllEvents:hover{
+  transform:scale(1.05);
+  box-shadow:0px 4px 15px rgba(0,0,0,0.2);
+  }
+  
+
+
+
+/* Reminder Icon and Box */
+.reminder-icon {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: #ffcc00;
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    animation: bounce 2s infinite, glow 1.5s infinite alternate;
+    z-index: 10;
+}
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+@keyframes glow {
+    from { box-shadow: 0 0 10px #ffcc00; }
+    to { box-shadow: 0 0 20px #ff9900; }
+}
+
+.reminder-box {
+    display: none;
+    position: absolute;
+    top: 60px;
+    right: 20px;
+    background: #fff3e6;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.15);
+    z-index: 9;
+    width: 280px;
+    text-align: left;
+    animation: fadeIn 0.5s ease-in-out;
+    border: 1px solid #ffcc99;
+}
+.reminder-box h3 {
+    margin: 0 0 15px;
+    font-size: 20px;
+    color: #333;
+    font-weight: bold;
+    text-align: center;
+    border-bottom: 2px solid #ffcc99;
+    padding-bottom: 10px;
+}
+.reminder-item {
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+    animation: slideIn 0.5s ease-in-out;
+    font-size: 14px;
+    color: #555;
+}
+.reminder-item:last-child {
+    border-bottom: none;
+}
+.reminder-item strong {
+    color: #ff6f61;
+    font-weight: bold;
+}
+.reminder-item:hover {
+    background: #ffe5cc;
+    border-radius: 5px;
+    padding: 10px;
+    transition: 0.3s ease;
+}
+
+/* Calendar Header */
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.calendar-header button {
+    background: linear-gradient(to right, #00f2fe, #4facfe);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 25px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    animation: pulse 2s infinite;
+}
+.calendar-header button:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Calendar Grid */
+.calendar {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 10px;
+    margin-bottom: 20px;
+    background-color: #f0f8ff;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+.day {
+    padding: 15px;
+    border-radius: 10px;
+    background: #e3e3e3;
+    cursor: pointer;
+    font-size: 14px;
+    transition: 0.3s ease, transform 0.3s ease;
+    animation: fadeIn 0.5s ease-in-out;
+}
+.day:hover {
+    background: #007bff;
+    color: white;
+    transform: scale(1.05);
+}
+.day.event-day {
+    background: #28a745;
+    color: white;
+    animation: pulse 1.5s infinite;
+}
+
+/* Countdown */
+#countdown {
+    font-size: 20px;
+    font-weight: bold;
+    margin: 20px 0;
+    padding: 15px;
+    /*background: linear-gradient(to right, limegreen,yellow);*/
+    background-color: #555;
+    border-radius: 10px;
+    color: white;
+    animation: fadeIn 1s ease, glow 1.5s infinite alternate;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+#countdown strong {
+    background-color: #28a745;
+    padding: 5px 10px;
+    border-radius: 5px;
+    color: white;
+    display: inline-block;
+    margin: 5px 0;
+}
+
+/* Event Form */
+.event-form {
+    display: none;
+    margin-top: 20px;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 10px;
+    animation: slideDown 0.5s ease;
+}
+@keyframes slideDown {
+    from { transform: translateY(-20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+.event-form input, .event-form button {
+    width: 90%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: transform 0.3s ease;
+}
+.event-form input:focus {
+    outline: none;
+    border-color: #007bff;
+    transform: scale(1.02);
+}
+.event-form button {
+    background: linear-gradient(to right, #00f2fe, #4facfe);
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+.event-form button:hover {
+    transform: scale(1.05);
+}
+
+/* Social Sharing Buttons */
+.social-sharing {
+    margin-top: 20px;
+}
+.social-sharing button {
+    margin: 5px;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+.social-sharing button:hover {
+    transform: scale(1.05);
+}
+.social-sharing button.whatsapp {
+    background: #25D366;
+}
+.social-sharing button.facebook {
+    background: #1877F2;
+}
+.social-sharing button.email {
+    background: #ff6f61;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .calendar {
+        grid-template-columns: repeat(5, 1fr);
+    }
+    .calendar-header button {
+        padding: 8px 16px;
+        font-size: 14px;
+    }
+    .event-form input, .event-form button {
+        width: 100%;
+    }
+}
+@media (max-width: 480px) {
+    .calendar {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    .calendar-header button {
+        padding: 6px 12px;
+        font-size: 12px;
+    }
+}
