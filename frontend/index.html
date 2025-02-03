@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social Platform</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Auth Container -->
+    <div id="authContainer" class="auth-container">
+        <div class="auth-box">
+            <h2>Welcome</h2>
+            <div class="auth-tabs">
+                <button class="auth-tab active" data-tab="login">Login</button>
+                <button class="auth-tab" data-tab="signup">Signup</button>
+            </div>
+            
+            <!-- Login Form -->
+            <form id="loginForm" class="auth-form">
+                <input type="email" placeholder="Email" required>
+                <input type="password" placeholder="Password" required>
+                <button type="submit">Login</button>
+            </form>
+
+            <!-- Signup Form -->
+            <form id="signupForm" class="auth-form hidden">
+                <input type="text" placeholder="Username" required>
+                <input type="email" placeholder="Email" required>
+                <input type="password" placeholder="Password" required>
+                <select required>
+                    <option value="">Select Gender</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                </select>
+                <button type="submit">Sign Up</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Main App Container -->
+    <div id="appContainer" class="app-container hidden">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="profile-brief">
+                <img src="https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y" alt="Profile" id="sidebarProfilePic">
+                <span id="sidebarUsername">Username</span>
+            </div>
+            <nav>
+                <a href="#" class="nav-item active" data-page="memes">
+                    <span class="icon">🎭</span> Memes
+                </a>
+                <a href="#" class="nav-item" data-page="events">
+                    <span class="icon">📅</span> Events
+                </a>
+                <a href="#" class="nav-item" data-page="achievements">
+                    <span class="icon">🏆</span> Achievements
+                </a>
+                <a href="#" class="nav-item" data-page="profile">
+                    <span class="icon">👤</span> Profile
+                </a>
+            </nav>
+            <button id="logoutBtn" class="logout-btn">Logout</button>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Memes Page -->
+            <div id="memesPage" class="content-page">
+                <h2>Memes</h2>
+                <button class="create-post-btn">Create Post</button>
+                <div id="memesContainer" class="posts-container"></div>
+            </div>
+
+            <!-- Events Page -->
+            <div id="eventsPage" class="content-page hidden">
+                <h2>Events</h2>
+                <button class="create-post-btn">Create Event</button>
+                <div id="eventsContainer" class="posts-container"></div>
+            </div>
+
+            <!-- Achievements Page -->
+            <div id="achievementsPage" class="content-page hidden">
+                <h2>Achievements</h2>
+                <button class="create-post-btn">Add Achievement</button>
+                <div id="achievementsContainer" class="posts-container"></div>
+            </div>
+
+            <!-- Profile Page -->
+            <div id="profilePage" class="content-page hidden">
+                <div class="profile-header">
+                    <img src="https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y" alt="Profile" id="profilePic">
+                    <button id="editProfileBtn">Edit Profile</button>
+                </div>
+                <div class="profile-info">
+                    <div class="info-item">
+                        <label>Username:</label>
+                        <span id="profileUsername"></span>
+                    </div>
+                    <div class="info-item">
+                        <label>Email:</label>
+                        <span id="profileEmail"></span>
+                    </div>
+                    <div class="info-item">
+                        <label>Gender:</label>
+                        <span id="profileGender"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Create Post Modal -->
+    <div id="createPostModal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h3>Create Post</h3>
+            <form id="createPostForm">
+                <select id="postType" required>
+                    <option value="meme">Meme</option>
+                    <option value="event">Event</option>
+                    <option value="achievement">Achievement</option>
+                </select>
+                <input type="file" id="postImages" multiple accept="image/*">
+                <input type="date" id="eventDate" class="hidden">
+                <button type="submit">Create</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
