@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>College Job Portal</title>
+  <style>
+    /* Reset */
+    html, body {
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+  top:0;
+  position:relative;
+  width: 100%;
+}
+
+.header{
+   background-attachment:fixed;
+}
+
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+    }
+
+    /* Header Section */
+    .header {
+      position: relative;
+      background: url('Desk-Decor.jpg') no-repeat center center/cover;
+      color: #fff;
+      text-align: center;
+      padding: 100px 20px;
+      overflow: hidden;
+    }
+
+    .header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 1;
+    }
+
+    .header-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .header-content h1 {
+      font-size: 2.5rem;
+      margin: 0;
+    }
+
+    .header-content p {
+      margin: 10px 0 20px;
+    }
+
+    .btn {
+      background: #ff5722;
+      color: #fff;
+      padding: 10px 20px;
+      text-decoration: none;
+      border-radius: 5px;
+      font-size: 1rem;
+    }
+
+    /* Job Listings Section */
+    .job-listings {
+      padding: 50px 20px;
+      background: #f4f4f4;
+    }
+    .career-listings {
+      padding: 50px 20px;
+      background: #f4f4f4;
+    }
+    .job-listings h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .career-listings h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .job-cards-container {
+      overflow-x: auto;
+      display: flex;
+      gap: 20px;
+      padding: 10px 0;
+    }
+    .career-cards-container {
+      overflow-x: auto;
+      display: flex;
+      gap: 20px;
+      padding: 10px 0;
+    }
+    .job-card {
+      flex: 0 0 300px; /* Fixed width for each card */
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    .career-card {
+      flex: 0 0 300px; /* Fixed width for each card */
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    .job-card h3 {
+      margin-top: 0;
+    }
+
+    .job-card a {
+      color: #ff5722;
+      text-decoration: none;
+    }
+
+    /* Career Tips Section */
+    /* Career Tips Section */
+
+
+
+   
+
+    .tip h3 {
+      margin-top: 0;
+    }
+
+    .tip a {
+      color: #ff5722;
+      text-decoration: none;
+    }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      padding: 10px;
+      background: #333;
+      color: #fff;
+    }
+
+    .career-tips {
+      padding: 50px 20px;
+    }
+
+    .career-tips h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .tips-container {
+      overflow-x: auto;
+      white-space: nowrap;
+      padding: 10px 0;
+    }
+
+    .tips {
+      display: flex;
+      gap: 20px;
+    }
+
+    .tip {
+      flex: 0 0 300px;
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    .top-right-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: #ff5722;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 3;
+    
+  }
+
+  .top-right-btn:hover {
+    background: #e64a19;
+  }
+  /* Modal Background */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 10;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+   background: rgba(0, 0, 0, 0.5); 
+  justify-content: center;
+  align-items: center;
+}
+
+/* Modal Content */
+.modal-content {
+  background: rgb(19, 138, 128);
+  padding: 20px;
+  color:#f4f4f4;
+  border-radius: 10px;
+  width: 600PX;
+  height:250px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  position: relative;
+}
+
+/* Close Button */
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+/* Submit Button */
+.JOBINTERN-btn{
+  background: #ff5722;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+  width:200px;
+  
+}
+
+.CAREER-btn{
+  background: #ff5722;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+  width:200px;
+
+}
+
+.JOBINTERN-btn:hover {
+  background: #e64a19;
+}
+.CAREER-btn:hover {
+  background: #e64a19;
+}
+.Careermodal-content {  /* More specific selector */
+    background: #fff !important;
+    padding: 20px;
+    width: 400px;
+    margin: 15% auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+.Jobmodal-content {
+    background: #fff;
+    padding: 20px;
+    width: 400px;
+    margin: 15% auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  .Careermodal-content input {
+    width: 90%;
+    padding: 8px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  .Jobmodal-content input {
+    width: 90%;
+    padding: 8px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  .Careerclose-btn {
+    float: right;
+    font-size: 24px;
+    cursor: pointer;
+  }
+  .Jobclose-btn {
+    float: right;
+    font-size: 24px;
+    cursor: pointer;
+  }
+  .Submit {
+    background: #ff5722;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  .Submit:hover {
+    background: #e64a19;
+  }
+  .CSubmit {
+    background: #ff5722;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  .CSubmit:hover {
+    background: #e64a19;
+  }
+
+  
+
+  </style>
+</head>
+<body>
+  <!-- Modal Box -->
+<div id="uploadModal" class="modal">
+  <div class="modal-content">
+    <span class="close-btn">&times;</span>
+    <h2>HEY!! THATS GREAT ,YOU ARE GONNA HELP 1000 OTHERS.....</h2>
+    <h3>WHAT TYPE OF CONTENT DO YOU WANNA UPLOAD </h3>
+    <button class="JOBINTERN-btn">JOB AND INTERNSHIP</button>
+    <button class="CAREER-btn">CAREER TIPS</button>
+  </div>
+</div>
+
+
+
+<!-- Upload Job Modal -->
+<div id="JobModal" class="modal">
+  <div class="Jobmodal-content">
+    <span class="Jobclose-btn">&times;</span>
+    <h2>Post a Job</h2>
+
+    <label for="companyName">Company Name:</label>
+    <input type="text" id="companyName" placeholder="Enter company name">
+
+    <label for="eligibility">Eligibility Criteria:</label>
+    <input type="text" id="eligibility" placeholder="Enter eligibility criteria">
+
+    <label for="jobRole">Job Role:</label>
+    <input type="text" id="jobRole" placeholder="Enter job role">
+
+    <label for="jobUrl">Application URL:</label>
+    <input type="text" id="jobUrl" placeholder="Enter job application link">
+
+    <button class="Submit">SUBMIT</button>
+  </div>
+</div>
+
+<!-- Upload CAREER Modal -->
+<div id="CareerModal" class="modal">
+  <div class="Careermodal-content">
+    <span class="Careerclose-btn">&times;</span>
+    <h2>Post a Career Tip</h2>
+
+    <label for="Title">Title:</label>
+    <input type="text" id="Title" placeholder="Enter career title">
+
+    <label for="eligibility">Description:</label>
+    <input type="text" id="description" placeholder="Enter main description">
+
+    
+    <label for="careerUrl">Application URL:</label>
+    <input type="text" id="careerUrl" placeholder="Enter career tip link">
+    <button class="CSubmit">SUBMIT</button>
+  </div>
+</div>
+
+
+<!-- Header Section -->
+  <header class="header">
+    <button class="top-right-btn">UPLOAD </button>
+    <div class="header-content">
+      <h1>FIND THE PERFECT JOB</h1>
+      <p>Internships and Jobs for College Students</p>
+      <a href="#job-listings" class="btn">Explore Jobs</a>
+    </div>
+  </header>
+
+  <!-- Job Listings Section -->
+  <section id="job-listings" class="job-listings">
+    <h2>Internship & Job Listings</h2>
+    <div class="job-cards-container">
+      
+    </div>
+  </section>
+
+  <section id="career-tips" class="career-tips">
+    <h2>Career Tips</h2>
+    <div class="tips-container">
+      <div class="tips">
+        </div>
+      
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>&copy; 2025 College Job Portal. All Rights Reserved.</p>
+  </footer>
+</body>
+
+
+<script>
+  const modal = document.getElementById("uploadModal");
+const uploadBtn = document.querySelector(".top-right-btn");
+const closeBtn = document.querySelector(".close-btn");
+
+// Open Modal
+uploadBtn.addEventListener("click", () => {
+  modal.style.display = "flex";
+});
+
+// Close Modal when clicking the close button
+closeBtn.addEventListener("click", () => {
+  modal.style.display = "none";
+});
+
+// Close Modal when clicking outside the modal content
+window.addEventListener("click", (e) => {
+  if (e.target === modal) {
+    modal.style.display = "none";
+  }
+});
+
+// Job Upload Modal handling
+const jobModal = document.getElementById("JobModal");
+const jobUploadBtn = document.querySelector(".JOBINTERN-btn");
+const jobCloseBtn = document.querySelector(".Jobclose-btn");
+
+// Show the job modal when "Job and Internship" button is clicked
+jobUploadBtn.addEventListener("click", () => {
+  jobModal.style.display = "flex";
+});
+
+// Close the job modal
+jobCloseBtn.addEventListener("click", () => {
+  jobModal.style.display = "none";
+});
+
+const submitJobBtn = document.querySelector(".Submit");
+submitJobBtn.addEventListener("click", () => {
+  const companyName = document.getElementById("companyName").value;
+  const eligibility = document.getElementById("eligibility").value;
+  const jobRole = document.getElementById("jobRole").value;
+  const jobUrl = document.getElementById("jobUrl").value;
+
+  if (companyName && eligibility && jobRole && jobUrl) {
+    alert("Job posted successfully!");
+
+    // Create the job card dynamically
+    const jobCard = document.createElement("div");
+    jobCard.classList.add("job-card");
+
+    // Add content to the job card
+    jobCard.innerHTML = `
+      <h3>${jobRole}</h3>
+      <p><strong>Company:</strong> ${companyName}</p>
+      <p><strong>Eligibility:</strong> ${eligibility}</p>
+      <a href="${jobUrl}" target="_blank">Apply Now</a>
+    `;
+
+    // Append the job card to the job listings section
+    const jobListingsContainer = document.querySelector(".job-cards-container");
+    jobListingsContainer.appendChild(jobCard);
+
+    // Close the job modal
+    jobModal.style.display = "none";
+  } else {
+    alert("Please fill out all the fields.");
+  }
+});
+
+// Handling Close for Modal
+jobCloseBtn.addEventListener("click", () => {
+  jobModal.style.display = "none";
+});
+
+const careerModal = document.getElementById("CareerModal");
+const careerUploadBtn = document.querySelector(".CAREER-btn");
+const careerCloseBtn = document.querySelector(".Careerclose-btn");
+
+careerUploadBtn.addEventListener("click", () => {
+  careerModal.style.display = "flex";
+});
+
+// Close the job modal
+careerCloseBtn.addEventListener("click", () => {
+  careerModal.style.display = "none";
+});
+
+const submitCareerBtn = document.querySelector(".CSubmit");
+submitCareerBtn.addEventListener("click", () => {
+  const title = document.getElementById("Title").value;
+  const description = document.getElementById("description").value;
+  const careerUrl = document.getElementById("careerUrl").value;
+
+  if (description && title && careerUrl) {
+    alert("career-tip posted successfully!");
+
+    // Create the job card dynamically
+    const  careerCard= document.createElement("div");
+    careerCard.classList.add("tip");
+
+    // Add content to the job card
+    careerCard.innerHTML = `
+      <h3>${title}</h3>
+      <p> ${description}</p>
+      
+      <a href="${careerUrl}" target="_blank">Read more</a>
+    `;
+
+    // Append the job card to the job listings section
+    const careerListingsContainer = document.querySelector(".tips-container");
+    careerListingsContainer.appendChild(careerCard);
+
+    // Close the job modal
+    careerModal.style.display = "none";
+  } else {
+    alert("Please fill out all the fields.");
+  }
+});
+
+// Handling Close for Modal
+careerCloseBtn.addEventListener("click", () => {
+  careerModal.style.display = "none";
+});
+</script>
+
+</html>
