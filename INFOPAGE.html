@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>College Social Media Platform</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), url('BACKGROUND.jpg');
+            background-size: cover;
+                
+        }
+
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 50px;
+        }
+
+        .hero-content {
+            max-width: 40%;
+        }
+
+        .hero-content h1 {
+            font-size: 2.5rem;
+            color: #3b3486;
+            margin-bottom: 15px;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            color: #5f5f5f;
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+        }
+
+        .cta-buttons a {
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: 0.3s ease;
+        }
+
+        .cta-buttons .btn-join {
+            background-color: #fdbb30;
+            color: #fff;
+        }
+
+        .cta-buttons .btn-watch {
+            background-color: #f4f4f4;
+            color: #3b3486;
+        }
+
+        .cta-buttons a:hover {
+            opacity: 0.8;
+        }
+
+        .hero-image {
+            max-width: 55%;
+            position: relative;
+        }
+
+        .hero-image img {
+            max-width: 100%;
+            border-radius: 10px;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: space-evenly;
+            background-color: #fef3d6;
+            padding: 30px 50px;
+            margin-top: 30px;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat .number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #fdbb30;
+        }
+
+        .stat p {
+            font-size: 1rem;
+            color: #5f5f5f;
+        }
+
+       .floating-info {
+        position: absolute;
+        top: 5%; /* Adjusted for better placement */
+        left: 0%; /* Place relative to the right of the hero image */
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+        z-index: 10; /* Ensure it stays above other content */
+    }
+
+    .info-box {
+        background-color: rgba(255, 255, 255, 0.5);
+        border-radius: 10px;
+        padding: 15px 20px;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        display: flex;
+        align-items: center;
+        gap: 30px;
+        margin-top:130px;
+        color: #5f5f5f;
+        width: 250px; /* Consistent width */
+        position:relative;
+        left:400px;
+    }
+    .info-box1 {
+        background-color: rgba(255, 255, 255, 0.5);
+        border-radius: 10px;
+        padding: 15px 20px;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        display: flex;
+        align-items: left;
+        gap: 10px;
+        color: #5f5f5f;
+        width: 250px; /* Consistent width */
+        position:relative;
+        top:150px;
+    }
+
+    .info-box2 {
+        background-color: rgba(255, 255, 255, 0.5);
+        border-radius: 10px;
+        padding: 15px 20px;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        display: flex;
+        align-items:right ;
+        gap: 10px;
+        color: #5f5f5f;
+        width: 250px; /* Consistent width */
+        position:relative;
+        top:200px;
+        left:350px;
+    }
+
+
+    .info-box i {
+        font-size: 1.5rem;
+        color: #3b3486;
+    }
+
+    .info-box1 i {
+        font-size: 1.5rem;
+        color: #3b3486;
+    }
+    
+    .info-box2 i {
+        font-size: 1.5rem;
+        color: #3b3486;
+    }
+
+    .info-box .info-title {
+        font-weight: bold;
+    }
+    .info-box1 .info-title {
+        font-weight: bold;
+    }
+    .info-box2 .info-title {
+        font-weight: bold;
+    }
+
+    .info-box .info-text {
+        font-size: 0.9rem;
+    }
+    .info-box1 .info-text {
+        font-size: 0.9rem;
+    }
+    .info-box2 .info-text {
+        font-size: 0.9rem;
+    }
+    /* Specific adjustments for each floating box */
+    .floating-info .info-box:nth-child(1) {
+        margin-top: 0; /* Default alignment */
+    }
+
+    .floating-info .info-box:nth-child(2) {
+        margin-top: 50px; /* Slight gap between boxes */
+    }
+
+    .floating-info .info-box:nth-child(3) {
+        margin-top: 50px; /* Adjusted for consistent spacing */
+    }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <div class="hero-content">
+            <h1>GROW TOGETHER ,SHINE TOGETHER.</h1>
+            <p>
+                At CampusPulse we share knowledge, laugh, and keep us updated—let me share some good vibes and information with you too!
+            </p>
+            <div class="cta-buttons">
+                <a href="#" class="btn-join">SIGN UP</a>
+                <a href="#" class="btn-watch">SIGN IN</a>
+            </div>
+        </div>
+        <div class="hero-image">
+            <img src="IMG-20250128-WA0001.png" alt="Hero">
+            <div class="floating-info">
+                <div class="info-box">
+                    <i class="fas fa-calendar-alt"></i>
+                    <div>
+                        <div class="info-title">EVENTS</div>
+                        <div class="info-text">Big College Fest Incoming! Are you guys ready to vibe?</div>
+                    </div>
+                </div>
+                <div class="info-box1">
+                    <i class="fas fa-trophy"></i>
+                    <div>
+                        <div class="info-title">STUDENT ACCOMPLISHMENTS</div>
+                        <div class="info-text">You just hit 1000 likes on your latest projects! Congrats, champ!</div>
+                    </div>
+                </div>
+                <div class="info-box2">
+                    <i class="fas fa-laugh"></i>
+                    <div>
+                        <div class="info-title">MEMES</div>
+                        <div class="info-text">New Meme Drop: When the professor says the exam is easy...</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
