@@ -29,12 +29,12 @@ exports.deletePost = async (req, res) => {
 };
 
 exports.increaseLike = async (req, res) => {
-    await Post.findByIdAndUpdate(req.params.postId, { $inc: { likes: 1 } });
+    await Post.findByIdAndUpdate(req.params.postId, { $addToSet: { likes: req.user.id } });
     res.json({ success: true });
 };
 
 exports.removeLike = async (req, res) => {
-    await Post.findByIdAndUpdate(req.params.postId, { $inc: { likes: -1 } });
+    await Post.findByIdAndUpdate(req.params.postId, { $pull: { likes: req.user.id } });
     res.json({ success: true });
 };
 
@@ -46,4 +46,34 @@ exports.addComment = async (req, res) => {
 exports.deleteComment = async (req, res) => {
     await Post.findByIdAndUpdate(req.params.postId, { $pull: { comments: { _id: req.params.commentId } } });
     res.json({ success: true });
+};
+
+exports.getEveryPost = async (req, res) => {
+    try {
+        const posts = await Post.find();
+        res.json({ success: true, posts });
+    } catch (error) {
+        res.status(500).json({ error: true, message: error.message });
+    }
+};
+
+exports.getAllComments = async (req, res) => {
+    try {
+        const post = await Post.findById(req.params.postId, "comments");
+        if (!post) {
+            return res.status(404).json({ error: true, message: "Post not found" });
+        }
+        res.json({ success: true, comments: post.comments });
+    } catch (error) {
+        res.status(500).json({ error: true, message: error.message });
+    }
+};
+
+exports.getUserPosts = async (req, res) => {
+    try {
+        const posts = await Post.find({ userId: req.params.userId });
+        res.json({ success: true, posts });
+    } catch (error) {
+        res.status(500).json({ error: true, message: error.message });
+    }
 };

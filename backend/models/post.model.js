@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const postSchema = new mongoose.Schema({
     postType: {
         type: String,
-        enum: ['meme', 'event', 'achivement'],
+        enum: ['meme', 'event', 'achievement'],
         required: true
     },
     userId: {
@@ -15,6 +15,10 @@ const postSchema = new mongoose.Schema({
         type: [String],
         default: []
     },
+    description: {
+        type: String,
+        default: ""
+    },
     date: {
         type: Date,
         required: function () {
@@ -22,8 +26,9 @@ const postSchema = new mongoose.Schema({
         }
     },
     likes: {
-        type: Number,
-        default: 0
+        type: [mongoose.Schema.Types.ObjectId],
+        ref: 'User',
+        default: []
     },
     comments: [
         {
