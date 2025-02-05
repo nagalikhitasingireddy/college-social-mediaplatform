@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social Platform</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Auth Container -->
+    <div id="authContainer" class="auth-container">
+        <div class="auth-box">
+            <h2>Welcome</h2>
+            <div class="auth-tabs">
+                <button class="auth-tab active" data-tab="login">Login</button>
+                <button class="auth-tab" data-tab="signup">Signup</button>
+            </div>
+            
+            <!-- Login Form -->
+            <form id="loginForm" class="auth-form">
+                <input type="email" placeholder="Email" required>
+                <input type="password" placeholder="Password" required>
+                <button type="submit">Login</button>
+            </form>
+
+            <!-- Signup Form -->
+            <form id="signupForm" class="auth-form hidden">
+                <input type="text" placeholder="Username" required>
+                <input type="email" placeholder="Email" required>
+                <input type="password" placeholder="Password" required>
+                <select required>
+                    <option value="">Select Gender</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                </select>
+                <button type="submit">Sign Up</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Main App Container -->
+    <div id="appContainer" class="app-container hidden">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="profile-brief">
+                <img src="https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y" alt="Profile" id="sidebarProfilePic">
+                <span id="sidebarUsername">Username</span>
+            </div>
+            <nav>
+                <a href="#" class="nav-item active" data-page="memes">
+                    <span class="icon">🎭</span> Memes
+                </a>
+                <a href="#" class="nav-item" data-page="events">
+                    <span class="icon">📅</span> Events 🎉
+                </a>
+                <a href="#" class="nav-item" data-page="achievements">
+                    <span class="icon">🏆</span> Achievements
+                </a>
+                <a href="#" class="nav-item" data-page="profile">
+                    <span class="icon">👤</span> Profile
+                </a>
+            </nav>
+            <button id="logoutBtn" class="logout-btn">Logout</button>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Memes Page -->
+            <div id="memesPage" class="content-page">
+                <h2>Memes</h2>
+                <button class="create-post-btn">Create Post</button>
+                <div id="memesContainer" class="posts-container"></div>
+            </div>
+
+            <!-- Events Page -->
+            <div id="eventsPage" class="content-page hidden">
+                <h2>Events</h2>
+                <button class="create-post-btn">Create Event</button>
+                <div id="eventsContainer" class="posts-container"></div>
+            </div>
+
+            <!-- Achievements Page -->
+            <div id="achievementsPage" class="content-page hidden">
+                <h2>Achievements</h2>
+                <button class="create-post-btn">Add Achievement</button>
+                <div id="achievementsContainer" class="posts-container"></div>
+            </div>
+
+            <!-- Profile Page -->
+            <div id="profilePage" class="content-page hidden">
+                <div class="profile-header">
+                    <img src="https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y" alt="Profile" id="profilePic">
+                    <button id="editProfileBtn">Edit Profile</button>
+                </div>
+                <div class="profile-info">
+                    <div class="info-item">
+                        <label>Username:</label>
+                        <span id="profileUsername"></span>
+                    </div>
+                    <div class="info-item">
+                        <label>Email:</label>
+                        <span id="profileEmail"></span>
+                    </div>
+                    <div class="info-item">
+                        <label>Gender:</label>
+                        <span id="profileGender"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Create Post Modal -->
+    <div id="createPostModal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h3>Create Post</h3>
+            <form id="createPostForm">
+                <div class="form-group">
+                    <label for="postType">Post Type</label>
+                    <select id="postType" required>
+                        <option value="meme">Meme</option>
+                        <option value="event">Event</option>
+                        <option value="achievement">Achievement</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="description">Description</label>
+                    <textarea id="description" rows="3" placeholder="Write something about your post..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="postImages">Images</label>
+                    <div class="file-upload">
+                        <label for="postImages" class="file-upload-label">
+                            <span class="icon">📷</span>
+                            Choose Images
+                        </label>
+                        <input type="file" id="postImages" multiple accept="image/*" class="file-input">
+                    </div>
+                    <div id="imagePreviewContainer" class="image-preview-container"></div>
+                </div>
+
+                <div class="form-group">
+                    <input type="date" id="eventDate" class="hidden">
+                </div>
+
+                <button type="submit" class="submit-btn">Create Post</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Edit Profile Modal -->
+    <div id="editProfileModal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h3>Edit Profile</h3>
+            <form id="editProfileForm">
+                <div class="form-group">
+                    <label for="profilePicUpload">Profile Picture</label>
+                    <div class="file-upload">
+                        <label for="profilePicUpload" class="file-upload-label">
+                            <span class="icon">📷</span>
+                            Choose Profile Picture
+                        </label>
+                        <input type="file" id="profilePicUpload" name="profilePic" accept="image/*" class="file-input">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="userName">Username</label>
+                    <input type="text" id="userName" name="userName" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="gender">Gender</label>
+                    <select id="gender" name="gender" required>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                    </select>
+                </div>
+                <button type="submit">Save Changes</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
